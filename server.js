@@ -1,13 +1,21 @@
 const express = require("express");
-const { exec } = require("child_process");
+const { spawn } = require("child_process");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// chạy bot
-exec("openclaw gateway start");
+// chạy bot KHÔNG block
+const bot = spawn("openclaw", ["gateway"]);
 
-// route cho uptime
+bot.stdout.on("data", (data) => {
+  console.log(`bot: ${data}`);
+});
+
+bot.stderr.on("data", (data) => {
+  console.error(`bot error: ${data}`);
+});
+
+// route uptime
 app.get("/", (req, res) => {
   res.send("Bot is alive!");
 });
