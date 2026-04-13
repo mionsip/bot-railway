@@ -2,7 +2,7 @@
   "name": "openclaw-bot",
   "version": "1.0.0",
   "scripts": {
-    "start": "openclaw gateway"
+    "start": "node server.js"
   },
   "dependencies": {
     "openclaw": "^2026.4.9",
